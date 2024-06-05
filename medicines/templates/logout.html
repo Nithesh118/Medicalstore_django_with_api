@@ -1,0 +1,41 @@
+{% extends "layout/app-layout.html" %}
+
+{% block content %}
+  {% if user.is_authenticated %}
+    <style>
+        .user-info {
+            width: 50%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .user-info p {
+            margin: 10px 0;
+            font-size: 1.2em;
+        }
+
+        .user-info button {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .user-info button:hover {
+            background-color: #5BBA6D;
+        }
+    </style>
+    <div class="user-info">
+        <p>You are currently logged in as {{ user.username }}.</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Log Out</button>
+        </form>
+    </div>
+  {% else %}
+    <p>You are not currently logged in.</p>
+  {% endif %}
+{% endblock %}
